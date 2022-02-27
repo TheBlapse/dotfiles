@@ -13,14 +13,16 @@ set $mod Mod4
 
 ##########3Launching Polybar
 
-
+#exec_always --no-startup-id ~/.i3/i3-chrome-tab-dragging.py
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ########   Screenshot
 bindsym Print       exec flameshot full -p /home/theblapse/Pictures/screenshots/
 bindsym Shift+Print exec flameshot gui -p /home/theblapse/Pictures/screenshots/
-bindsym $mod+Shift+S exec flameshot gui -p /home/theblapse/Pictures/screenshots/
+bindsym $mod+Shift+S exec flameshot gui 
+bindsym Mod1+e exec rofimoji
 #################
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -250,8 +252,8 @@ exec --no-startup-id nitrogen --restore
 hide_edge_borders both
 #default_border pixel 0
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 6
+default_floating_border pixel 5
 ###################################
 #################################
 ##  
@@ -400,7 +402,52 @@ mode "$mode_gaps_left" {
 
 ##################
 #################
+
+
+# Windows colors
+set $bgcolor	 #ffffff
+set $ibgcolor  	 #363636
+set $fws	 	 #30475E80
+set $barcolor	 #30475E0D
+set $itextcolor	 #969696
+set $textcolor     #ffffff
+set $ubgcolor	 #ff0000
+
+# 			border 		background		text		indicator
+client.focused 		$bgcolor		$bgcolor			$textcolor	$bgcolor
+client.unfocused		$ibgcolor	$ibgcolor		$itextcolor	$ibgcolor
+client.focused_inactive	$ibgcolor	$ibgcolor		$itextcolor	$ibgcolor
+client.urgent		$ubgcolor	$ubgcolor		$textcolor 	$ubgcolor
+
+
+
+
 ##############
+# i3 Color
+
+#client.focused          #444444 #303060 #F8F8F2 #444444   #6272A4
+#client.focused_inactive #282A36 #282A36 #BFBFBF #282A36   #282A36
+#client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+#client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+#client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+#client.background       #F8F8F2
+
+# Do not follow the mouse
+focus_follows_mouse no
+
+
+
+# startup apps
+exec --no-startup-id discord #--ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
+#
+exec --no-startup-id  google-chrome-stable
+exec --no-startup-id spotify
+assign [class="code"] $ws3
+assign [class="discord"] $ws3
+assign [class="google-chrome"] $ws1
+assign [class="google-chrome-stable"] $ws1
+assign [class="Spotify"] $ws4
+assign [class="spotify"] $ws4
 
 ####################################################
 exec_always --no-startup-id autotiling
